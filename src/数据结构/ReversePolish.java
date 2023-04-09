@@ -21,7 +21,7 @@ public class ReversePolish {
         for (String string : strings) {
 //            if (string.matches("\\d+"))
 //            Double.parseDouble(string);
-            if (string.equals("+") || string.equals("-") || string.equals("/") || string.equals("*")) {
+            if ("+".equals(string) || "-".equals(string) || "/".equals(string) || "*".equals(string)) {
                 double a = stack.pop();
                 double b = stack.pop();
                 stack.push(caculate(a, b, string.charAt(0)));

@@ -1,4 +1,4 @@
-import static LeetCode.s1687.boxDelivering;
+import static LeetCode.困难.s1687从仓库到码头运输箱子.boxDelivering;
 
 public class LeetCodeMain {
     public static void main(String[] args) {

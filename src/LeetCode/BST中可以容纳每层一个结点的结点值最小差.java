@@ -60,7 +60,9 @@ class GfG {
             
             // For the right child
             i++;
-            if (i >= ip.length) break;
+            if (i >= ip.length) {
+                break;
+            }
             
             currVal = ip[i];
             
@@ -80,7 +82,9 @@ class GfG {
     }
     
     static void printInorder(Node root) {
-        if (root == null) return;
+        if (root == null) {
+            return;
+        }
         
         printInorder(root.left);
         System.out.print(root.data + " ");
@@ -138,15 +142,18 @@ class Solution {
                 Node curr = q.poll();
                 temp.add(curr.data);
                 // System.out.print(curr.data+" ");
-                if (curr.left != null) q.add(curr.left);
-                if (curr.right != null) q.add(curr.right);
+                if (curr.left != null) {
+                    q.add(curr.left);
+                }
+                if (curr.right != null) {
+                    q.add(curr.right);
+                }
             }
             levels.add(temp);
         }
         
         int[] a = smallestRange(levels);
-        Range ans = new Range(a[0], a[1]);
-        return ans;
+        return new Range(a[0], a[1]);
         
     }
     
@@ -162,13 +169,13 @@ class Solution {
         for (int i = 0; i < nums.size(); i++) {
             int mol = nums.get(i).get(0);
             max = Math.max(max, mol);
-            int arr[] = {mol, 0, i};
+            int[] arr = {mol, 0, i};
             pq.add(arr);
         }
         
         
         while (true) {
-            int arr[] = pq.remove();
+            int[] arr = pq.remove();
             if (res[1] - res[0] > max - arr[0]) {
                 res[0] = arr[0];
                 res[1] = max;

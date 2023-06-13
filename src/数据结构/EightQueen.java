@@ -6,7 +6,8 @@ public class EightQueen {
     public static void main(String[] args) {
         eightQueen(0);
     }
-    
+
+
     private static void eightQueen(int count) {
         if (count == 8) {
             printChess(chessboard);
@@ -35,5 +36,6 @@ public class EightQueen {
         }
         System.out.println();
     }
-    
+
+
 }

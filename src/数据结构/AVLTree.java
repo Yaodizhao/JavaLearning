@@ -2,20 +2,20 @@ package 数据结构;
 
 public class AVLTree<T extends Comparable<T>> {
     public AVLTreeNode<T> root;
-    
+
     static class AVLTreeNode<T extends Comparable<T>> {
         T key;
         int height;
         AVLTreeNode<T> lchild;
         AVLTreeNode<T> rchild;
-        
+
         AVLTreeNode(T key, AVLTreeNode<T> lchild, AVLTreeNode<T> rchild) {
             this.key = key;
             this.lchild = lchild;
             this.rchild = rchild;
         }
     }
-    
+
     private AVLTreeNode<T> insert(AVLTreeNode<T> tree, T key) {
         if (tree == null) {
             tree = new AVLTreeNode<>(key, null, null);
@@ -39,37 +39,40 @@ public class AVLTree<T extends Comparable<T>> {
                         tree = RightLeftRotation(tree);
                     }
                 }
-            } else
+            } else {
                 System.out.println("数据节点相同");
+            }
         }
         tree.height = Math.max(height(tree.lchild), height(tree.rchild)) + 1;
         return tree;
     }
-    
+
     public void insert(T key) {
         root = insert(root, key);
     }
-    
+
     public AVLTreeNode<T> search(AVLTreeNode<T> root, T key) {
         if (root == null) {
             return null;
         }
         int cmp = key.compareTo(root.key);
-        if (cmp < 0)
+        if (cmp < 0) {
             return search(root.lchild, key);
-        else if (cmp > 0)
+        } else if (cmp > 0) {
             return search(root.rchild, key);
-        else
+        } else {
             return root;
+        }
     }
-    
-    
+
+
     private AVLTreeNode<T> remove(AVLTreeNode<T> tree, T key) {
-        
+
         AVLTreeNode<T> target = search(tree, key);
-        
-        if (tree == null || target == null)
+
+        if (tree == null || target == null) {
             return null;
+        }
         int cmp = target.key.compareTo(tree.key);
         if (cmp < 0) {
             tree.lchild = remove(tree.lchild, target.key);
@@ -98,40 +101,43 @@ public class AVLTree<T extends Comparable<T>> {
                 tree = tree.lchild == null ? tree.rchild : tree.lchild;
             }
         }
-        
+
         return tree;
     }
-    
-    
+
+
     public void remove(T key) {
         root = remove(root, key);
     }
-    
+
     public AVLTreeNode<T> minimum(AVLTreeNode<T> root) {
-        if (root == null)
+        if (root == null) {
             return null;
+        }
         while (root.lchild != null) {
             root = root.lchild;
         }
         return root;
     }
-    
+
     public AVLTreeNode<T> maximum(AVLTreeNode<T> root) {
-        if (root == null)
+        if (root == null) {
             return null;
+        }
         while (root.rchild != null) {
             root = root.rchild;
         }
         return root;
     }
-    
+
     private int height(AVLTreeNode<T> tree) {
-        if (tree != null)
+        if (tree != null) {
             return tree.height;
-        
+        }
+
         return 0;
     }
-    
+
     private AVLTreeNode<T> LeftRotation(AVLTreeNode<T> node) {
         AVLTreeNode<T> left = node.lchild;
         node.lchild = left.rchild;
@@ -140,7 +146,7 @@ public class AVLTree<T extends Comparable<T>> {
         left.height = Math.max(height(left.lchild), height(node)) + 1;
         return left;
     }
-    
+
     private AVLTreeNode<T> RightRotation(AVLTreeNode<T> node) {
         AVLTreeNode<T> right = node.rchild;
         node.rchild = right.lchild;
@@ -149,17 +155,17 @@ public class AVLTree<T extends Comparable<T>> {
         right.height = Math.max(height(right.rchild), height(node)) + 1;
         return right;
     }
-    
+
     private AVLTreeNode<T> LeftRightRotation(AVLTreeNode<T> node) {
         node.lchild = RightRotation(node.lchild);
         return LeftRotation(node);
     }
-    
+
     private AVLTreeNode<T> RightLeftRotation(AVLTreeNode<T> node) {
         node.rchild = LeftRotation(node.rchild);
         return RightRotation(node);
     }
-    
-    
+
+
 }
 

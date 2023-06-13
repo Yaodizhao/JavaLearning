@@ -16,10 +16,11 @@ public class 师兄师姐面试题目 {
         
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 1; j <= mode.length(); j++) {
-                if (s.charAt(i - 1) == mode.charAt(j - 1))
+                if (s.charAt(i - 1) == mode.charAt(j - 1)) {
                     matrix[i][j] = matrix[i - 1][j - 1] + matrix[i - 1][j];
-                else
+                } else {
                     matrix[i][j] = matrix[i - 1][j];
+                }
             }
         }
         return matrix[s.length()][mode.length()];
@@ -35,7 +36,9 @@ public class 师兄师姐面试题目 {
         String[] port = urlpath[0].split(":");
         if (port.length > 1) {
             System.out.println("port=" + port[1]);
-        } else System.out.println("port=");
+        } else {
+            System.out.println("port=");
+        }
         String pathname = "";
         for (int i = 1; i < urlpath.length; i++) {
             pathname = pathname + "/" + urlpath[i];
@@ -67,19 +70,17 @@ public class 师兄师姐面试题目 {
                 }
             }
         }
-        
-        if (c.toString().contains("0"))
-            return false;
-        else
-            return true;
+
+        return !Arrays.toString(c).contains("0");
     }
     
     // total是树总数
     public static int max_tree(int start, int[] tree, int total, int max) {
         int max2;
         int max1 = max2 = tree[start];
-        if (start > total)
+        if (start > total) {
             return max;
+        }
         max += tree[start];
         if (2 * start <= total) {
             max1 = tree[start] + max_tree(2 * start, tree, total, max);
